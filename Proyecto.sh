@@ -1,10 +1,8 @@
 #!/bin/bash 
 chmod 777 Proyecto.sh
 
-
-
 function AnimacionMenu { 
-       	
+       	clear
 		echo -e "\e[31m╔══════════════════════════════════════════════════════════════════════════════╗\e[0m"
 		echo -e	"\e[31m|\e[0m   (_)                                                   _                    \e[31m|\e[0m"
 		echo -e	"\e[31m|\e[0m   | | _ __   ______ (_) _   _______  _ ___   __ _   __ | | ______	       \e[31m|\e[0m"
@@ -111,66 +109,62 @@ function AnimacionMenu {
 		sleep .300
 		clear
 		
-		
 	Menu
 }
 
 function Menu {
+	until [ $op = 0]
+		do
+			clear
+			echo    "╔═══════════════════════════════════════════════╗"
+			echo -e "|                    \e[31mMENU\e[0m                       |"
+			echo    "|                                               |"
+			echo -e "|              \e[31mBIENVENIDO: $nombre\e[0m     	        |"
+			echo    "|                                               |"
+			echo -e "|                  \e[31mPRINCIPAL\e[0m                    |"
+			echo    "╚═══════════════════════════════════════════════╝"
+			echo ""
+			echo "╔═══════════════════════════════════════════════╗"
+			echo "|    ___                                        |"
+			echo "|   |   |                                       |"
+			echo "|   | 1 |  MODO HISTORIA                        |"
+			echo "|   |___|                                       |"
+			echo "|    ___                                        |"
+			echo "|   |   |                                       |"
+			echo "|   | 2 |  TUTORIAL                             |"
+			echo "|   |___|                                       |"
+			echo "|    ___                                        |"
+			echo "|   |   |                                       |"
+			echo "|   | 3 |  NOSOTOROS                            |"
+			echo "|   |___|                                       |"
+			echo "|    ___                                        |"
+			echo "|   |   |                                       |"
+			echo "|   | 0 |  SALIR                                |"
+			echo "|   |___|                                       |"
+			echo "|                                               |"
+			echo "╚═══════════════════════════════════════════════╝"
+			echo ""
+			read -p "Elija una opcion:" op
+			
+				case $op in 
+					1) ModoHistoria;;
 
-until [ $op = 0]
-do
-clear
-		echo    "╔═══════════════════════════════════════════════╗"
-		echo -e "|                    \e[31mMENU\e[0m                       |"
-		echo    "|                                               |"
-		echo -e "|              \e[31mBIENVENIDO: $nombre\e[0m     	        |"
-		echo    "|                                               |"
-		echo -e "|                  \e[31mPRINCIPAL\e[0m                    |"
-		echo    "╚═══════════════════════════════════════════════╝"
-		echo ""
-		echo "╔═══════════════════════════════════════════════╗"
-		echo "|    ___                                        |"
-		echo "|   |   |                                       |"
-		echo "|   | 1 |  MODO HISTORIA                        |"
-		echo "|   |___|                                       |"
-		echo "|    ___                                        |"
-		echo "|   |   |                                       |"
-		echo "|   | 2 |  TUTORIAL                             |"
-		echo "|   |___|                                       |"
-		echo "|    ___                                        |"
-		echo "|   |   |                                       |"
-		echo "|   | 3 |  NOSOTOROS                            |"
-		echo "|   |___|                                       |"
-		echo "|    ___                                        |"
-		echo "|   |   |                                       |"
-		echo "|   | 0 |  SALIR                                |"
-		echo "|   |___|                                       |"
-		echo "|                                               |"
-		echo "╚═══════════════════════════════════════════════╝"
-		echo ""
-		read -p "Elija una opcion:" op
-		
-		case $op in 
-			1)ModoHistoria;;
-			2)Tutorial;;
-			3)Nosotros;;
-			0)exit;;
-		esac
+					2) clear
+						Tutorial;;
 
-		done
+					3) Nosotros;;
 
-
-
+					0) exit;;
+				esac
+			done
 }
 
 function IniciarSesion {
-
+	clear
 	echo    "╔═════════════════════════════════════════════════════════════════╗" 
     echo    "|                 		                		  |" 
 	echo    "|                 		                		  |"
 	read -p "|   NOMBRE:" nombreIn
-	echo    "|                 		                		  |"
-	echo    "|                 		                                  |"
 	echo    "|                 		                		  |"
 	echo    "|                 		                	          |"
 	read -p "|   CONTRASENA:" contrasenaIn
@@ -178,79 +172,86 @@ function IniciarSesion {
 	echo    "|                 		                 	          |"
 	echo    "╚═════════════════════════════════════════════════════════════════╝"
 	
-	if [ $nombre = $nombreIn ] && [ $contrasena = $contrasenaIn ];
-	then
-		echo "Login correcto"
-		sleep 2
-		Menu
-	else 
-	clear
-        IniciarSesion
-    fi		
-
-
-}
+	#busqueda usuario
+	cd usuarios
+	if test $contrasenaIn
+		then
+			echo "Usuario correcto"
+			sleep 3
+			Menu
+			cd ..
+		else
+			echo "Usuario incorrecto"
+			sleep 3
+			Menu
+			cd ..
+	fi
+}	
 
 function Registrarse {
-
-	
+	clear
 	echo    "╔═════════════════════════════════════════════════════════════════╗" 
     echo    "|                 		                		  |" 
 	echo    "|                 		                		  |"
 	read -p "|   NOMBRE:" nombre
 	echo    "|                 		                		  |"
 	echo    "|                 		                                  |"
-	read -p "|   APELLIDO:" apellido
-	echo    "|                 		                		  |"
-	echo    "|                 		                	          |"
 	read -p "|   CONTRASENA:" contrasena
 	echo    "|                 		                                  |"
 	echo    "|                 		                 	          |"
 	echo    "╚═════════════════════════════════════════════════════════════════╝"
 	sleep 1	
+	cd usuarios
+	touch $nombre.txt
+	echo $nombre,$contrasena >> $nombre.txt
+	cd ..
     login	
-
-	
-	
 }
 
 function login {
-
 	clear
 	echo "╔═════════════════════════════════════════════════════════════════╗" 
     echo "|                 				                  |"
 	echo "|    _________                                                    |"
-	echo "|   |         |                                                   |"
 	echo "|   |         |                                   	          |"
 	echo "|   |    1    |      INICIAR SESION                  		  |"
-	echo "|   |         |                                        	          |"
 	echo "|   |_________|                              			  |"
 	echo "|                                               		  |"
 	echo "|    _________                                  		  |"
 	echo "|   |         |                                  		  |"
-	echo "|   |         |                                  		  |"
 	echo "|   |    2    |      REGISTRARSE                 		  |"
-	echo "|   |         |                                   		  |"
 	echo "|   |_________|                                      		  |"
 	echo "|                                               		  |"
 	echo "|    _________                                  		  |"
 	echo "|   |         |                                  		  |"
-	echo "|   |         |                                  		  |"
 	echo "|   |    0    |      SALIR                 			  |"
-	echo "|   |         |                                   		  |"
 	echo "|   |_________|                                      		  |"
 	echo "|                                               		  |"
 	echo "╚═════════════════════════════════════════════════════════════════╝"
 	echo ""
 	read -p "Ingrese su opcion:" regi
 	case $regi in
-	1) clear
-	   IniciarSesion;;
-	2) clear
-       Registrarse;;
-	0) exit;;
+		1) clear
+		IniciarSesion;;
+		2) clear
+		Registrarse;;
+		0) exit;;
 	esac
-	
+}
 
+
+function Tutorial {
+	clear
+	echo -e "\e[33mBien\e[0m" 
+	sleep 0.2 
+	clear
+	echo -e "\e[33Bienve\e[0m"
+	sleep 0.2 
+	clear
+	echo -e "\e[33Bienvenido al Tutorial\e[0m"
+	sleep 1
+	echo "Este Tutorial ayudara al hacker a aprender lo basico sobre pirateria."
+	sleep 1
+	echo "Aprendera sobre los comandos basicos del juego y como implementarlos."
 }
 login
