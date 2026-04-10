@@ -1,7 +1,7 @@
 #!/bin/bash 
 # Operating Systems II Final Project — UTU ESI BUCEO
 # Authors: Gaston Benitez | Joaquin Rossi | 2BC
-chmod 777 infiltrado.sh
+chmod 777 infiltrator.sh
 
 # Global read variables
 	promptOption=$(echo -e "\e[92mElija una opcion:\e[0m")
@@ -25,12 +25,12 @@ chmod 777 infiltrado.sh
 	storyAnswer5="sed 's/Pensilvania/Colombia/gi' datosvuelo"
 #-----------------------
 
-if test -d Infiltrado 
+if test -d Infiltrator 
 	then
-		cd Infiltrado
+		cd Infiltrator
 	else
-		mkdir Infiltrado 
-		cd Infiltrado
+		mkdir Infiltrator 
+		cd Infiltrator
 		mkdir users
 fi
 
